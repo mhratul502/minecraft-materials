@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Castle 2 Raw Materials Tracker</title>
+<title>Castle 2 Items Tracker</title>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 --bg:#f3f1ec;--card:#fff;--tx:#1f2421;--mut:#6b726d;--line:#dcd8cf;--acc:#3f8f4f;--acc2:#2d6a3a;--bar:#e4e1d8}
@@ -43,7 +43,7 @@ h2{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)
 </head>
 <body>
 <header>
-<h1>⛏️ Castle 2 · Raw Materials</h1>
+<h1>🏰 Castle 2 · Items to craft</h1>
 <div class="bar"><i id="pb"></i></div>
 <div class="sum" id="sum"></div>
 <div class="note" style="margin-bottom:6px">Needs of 30 or more are counted in stacks, rounded up (2 stacks + a few = 3 stacks). Under 30 is counted in single items.</div>
@@ -58,41 +58,80 @@ h2{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)
 <main id="list"></main>
 <script>
 const D=[
-["Mine / dig","Cobbled deepslate",3933,"Stonecutter: bricks, tiles, stairs, walls 1:1, slabs 2 per"],
-["Mine / dig","Iron ingots",154,"Lanterns, chains, cauldrons, anvil, blast furnace, etc."],
-["Mine / dig","Coal / charcoal",35,"Torches (133) and campfire"],
-["Mine / dig","Andesite",42,"Mine it, or diorite + cobblestone; stonecutter for polished/stairs/slabs"],
-["Mine / dig","Cobblestone",48,"4 furnaces, 2 brewing stands, stone parts"],
-["Mine / dig","Clay balls",75,"Bricks for 25 flower pots"],
-["Mine / dig","Diamonds",4,"2 enchanting tables"],
-["Mine / dig","Obsidian",48,"Enchanting tables 8, ender chests 40"],
-["Mine / dig","Sculk catalyst",11,"Silk Touch, deep dark / ancient city"],
-["Mine / dig","Large amethyst bud",5,"Silk Touch on a geode"],
-["Wood","Mangrove logs",640,"Planks, fences, slabs, stairs, trapdoors, signs, doors + 104 for log blocks"],
-["Wood","Any logs",256,"Bookshelves, chests, barrels, ladders, lecterns, smokers, oak logs"],
-["Wood","Spruce leaves",13,"Shears"],
-["Wood","Spruce sapling",3,""],
-["Farm / animals","Wool",73,"Gray 32, light gray 26, red 15 (carpets, banner, bed)"],
-["Farm / animals","Sugar cane",700,"Paper for ~233 books"],
-["Farm / animals","Leather",233,"Books for bookshelves, lecterns, enchanting tables"],
-["Farm / animals","Wheat",315,"35 hay bales (9 each)"],
-["Farm / animals","String",24,"Red candles and scaffolding"],
-["Farm / animals","Honeycomb",23,"Red candles"],
-["Farm / animals","Gray dye",32,"Black + white dye, or ink sac + bone meal"],
-["Farm / animals","Light gray dye",26,"Gray + white dye, azure bluet or oxeye daisy"],
-["Farm / animals","Red dye",38,"Poppies, red tulips, beetroot (candles + wool)"],
-["Farm / animals","Bamboo",6,"Scaffolding"],
-["Plants","Flowering azalea",13,""],
-["Plants","Azalea",9,""],
-["Plants","Grass block",6,"Silk Touch"],
-["Nether / mobs","Blaze rods",5,"2 brewing stands + 5 ender eyes"],
-["Nether / mobs","Ender pearl",5,"Ender eyes for 5 ender chests"],
-["Nether / mobs","Crimson fungus",3,"Crimson forest"],
-["Nether / mobs","Crimson roots",2,"Crimson forest"],
-["Nether / mobs","Skeleton skull",2,"Charged creeper kill"],
-["Nether / mobs","Cobweb",1,"Shears or sword"]
+["Deepslate & stone", "Deepslate Bricks", 2275, "Stonecutter"],
+["Deepslate & stone", "Cobbled Deepslate", 823, "Mine it"],
+["Deepslate & stone", "Deepslate Brick Stairs", 357, "Stonecutter"],
+["Deepslate & stone", "Deepslate Brick Wall", 226, "Stonecutter"],
+["Deepslate & stone", "Cobbled Deepslate Stairs", 151, "Stonecutter"],
+["Deepslate & stone", "Deepslate Brick Slab", 128, "Stonecutter"],
+["Deepslate & stone", "Cobbled Deepslate Slab", 39, "Stonecutter"],
+["Deepslate & stone", "Deepslate Tiles", 11, "Stonecutter"],
+["Deepslate & stone", "Deepslate Tile Stairs", 6, "Stonecutter"],
+["Deepslate & stone", "Andesite", 14, "Mine it"],
+["Deepslate & stone", "Andesite Stairs", 14, "Stonecutter"],
+["Deepslate & stone", "Andesite Slab", 4, "Stonecutter"],
+["Deepslate & stone", "Andesite Wall", 1, "Stonecutter"],
+["Deepslate & stone", "Polished Andesite", 6, "Stonecutter"],
+["Deepslate & stone", "Polished Andesite Slab", 7, "Stonecutter"],
+["Deepslate & stone", "Polished Andesite Stairs", 1, "Stonecutter"],
+["Mangrove wood", "Mangrove Planks", 509, "From logs"],
+["Mangrove wood", "Mangrove Fence", 377, "Planks + sticks"],
+["Mangrove wood", "Mangrove Slab", 337, "Craft"],
+["Mangrove wood", "Mangrove Stairs", 256, "Craft"],
+["Mangrove wood", "Mangrove Trapdoor", 127, "Craft"],
+["Mangrove wood", "Mangrove Log", 88, "Chop"],
+["Mangrove wood", "Stripped Mangrove Log", 16, "Axe on a log"],
+["Mangrove wood", "Mangrove Sign", 14, "Planks + stick"],
+["Mangrove wood", "Mangrove Door", 13, "Craft"],
+["Mangrove wood", "Mangrove Button", 4, "1 plank each"],
+["Wood & storage", "Bookshelf", 71, "Librarian, or craft"],
+["Wood & storage", "Chest", 31, "8 planks each"],
+["Wood & storage", "Barrel", 24, "Planks + slabs"],
+["Wood & storage", "Ladder", 40, "Sticks"],
+["Wood & storage", "Lectern", 6, "4 slabs + bookshelf"],
+["Wood & storage", "Oak Log", 6, "Chop"],
+["Wood & storage", "Scaffolding", 2, "Bamboo + string"],
+["Wood & storage", "Crafting Table", 1, "Craft"],
+["Wood & storage", "Cartography Table", 1, "Planks + paper"],
+["Wood & storage", "Smithing Table", 1, "Planks + iron"],
+["Lighting", "Torch", 82, "Coal + stick"],
+["Lighting", "Lantern", 51, "Librarian, 1 emerald each"],
+["Lighting", "Chain", 16, "Iron"],
+["Lighting", "Red Candle", 23, "Librarian (master) or craft"],
+["Lighting", "Campfire", 1, "Logs + coal + sticks"],
+["Carpets, wool & hay", "Gray Carpet", 35, "Carpet duplicator"],
+["Carpets, wool & hay", "Light Gray Carpet", 25, "Carpet duplicator"],
+["Carpets, wool & hay", "Red Carpet", 9, "Carpet duplicator"],
+["Carpets, wool & hay", "Gray Wool", 8, "Dye wool"],
+["Carpets, wool & hay", "Light Gray Wool", 8, "Dye wool"],
+["Carpets, wool & hay", "Red Banner", 1, "6 red wool + stick"],
+["Carpets, wool & hay", "Red Bed", 1, "3 red wool + planks"],
+["Carpets, wool & hay", "Hay Bale", 35, "9 wheat each"],
+["Plants & decor", "Flower Pot", 25, "3 bricks each"],
+["Plants & decor", "Flowering Azalea", 13, ""],
+["Plants & decor", "Azalea", 9, ""],
+["Plants & decor", "Spruce Leaves", 13, "Shears"],
+["Plants & decor", "Grass Block", 6, "Silk Touch"],
+["Plants & decor", "Spruce Sapling", 3, ""],
+["Plants & decor", "Crimson Fungus", 3, "Nether"],
+["Plants & decor", "Crimson Roots", 2, "Nether"],
+["Plants & decor", "Sculk Catalyst", 11, "Silk Touch, deep dark"],
+["Plants & decor", "Large Amethyst Bud", 5, "Silk Touch, geode"],
+["Plants & decor", "Skeleton Skull", 2, "Charged creeper kill"],
+["Plants & decor", "Cobweb", 1, "Shears or sword"],
+["Workstations & metal", "Cauldron", 7, "7 iron each"],
+["Workstations & metal", "Ender Chest", 5, "8 obsidian + ender eye"],
+["Workstations & metal", "Enchanting Table", 2, "Book, 2 diamonds, 4 obsidian"],
+["Workstations & metal", "Brewing Stand", 2, "Blaze rod + cobblestone"],
+["Workstations & metal", "Smoker", 2, "Furnace + 4 logs"],
+["Workstations & metal", "Stone Button", 2, "Stone"],
+["Workstations & metal", "Stonecutter", 1, "Iron + 3 stone"],
+["Workstations & metal", "Anvil", 1, "3 iron blocks + 4 ingots"],
+["Workstations & metal", "Blast Furnace", 1, "Furnace + iron + smooth stone"],
+["Workstations & metal", "Furnace", 1, "8 cobblestone"],
+["Workstations & metal", "Grindstone", 1, "Sticks + slab + planks"]
 ];
-const K="mcmats.castle2.v1";
+const K="mcmats.castle2items.v1";
 const SZ={"Ender pearl":16};
 const U=D.map(d=>d[2]<30?1:(SZ[d[1]]||64));
 const N=D.map((d,i)=>Math.ceil(d[2]/U[i]));
